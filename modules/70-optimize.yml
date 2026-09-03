@@ -2,4 +2,4 @@ name: install-prefs
 type: shell
 commands:
 #  - apt-get install tlp tlp-rdw powertop micro fish
-   - DEBIAN_FRONTEND=noninteractive apt-get install -y tlp tlp-rdw tlp-pd powertop micro fish
+   - DEBIAN_FRONTEND=noninteractive apt-get install -y tlp tlp-rdw powertop micro fish
