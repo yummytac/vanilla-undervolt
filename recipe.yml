@@ -31,11 +31,14 @@ stages:
     sources:
       - packages:
         - vim
+        - python3
+        - python3-pip
+        - python3-setuptools
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
     commands:
-    - echo Example output
+    - pip3 install --no-cache-dir --break-system-packages undervolt
 
   - name: example-modules # Sample module demonstrating importing local and remote modules
     type: includes
