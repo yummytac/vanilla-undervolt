@@ -1,1 +1,4 @@
-
+name: install-prefs
+type: shell
+commands:
+apt-get install tlp tlp-rdw tlp-pd powertop micro fish
