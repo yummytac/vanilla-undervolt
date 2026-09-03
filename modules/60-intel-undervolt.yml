@@ -2,11 +2,15 @@ name: install-undervolt
 type: shell
 commands:
   # 1. Install build dependencies
-  - apt-get update && apt-get install -y build-essential git pkg-config
+  - apt-get update
+  - apt-get install -y build-essential git pkg-config
 
   # 2. Clone repository and build
   - git clone https://github.com/kitsunyan/intel-undervolt.git /tmp/intel-undervolt
-  - cd /tmp/intel-undervolt && ./configure && make && make install
+  - cd /tmp/intel-undervolt
+  - ./configure
+  - make
+  - make install
 
   # 3. Clean up source build files
   - rm -rf /tmp/intel-undervolt
@@ -21,6 +25,6 @@ commands:
     undervolt 2 CPU Cache -80
     EOF
 
-  # 5. Enable the service manually via symlink (bypasses active systemd requirement)
+  # 5. Enable the service manually via symlink
   - mkdir -p /etc/systemd/system/multi-user.target.wants
   - ln -sf /usr/local/lib/systemd/system/intel-undervolt.service /etc/systemd/system/multi-user.target.wants/intel-undervolt.service
