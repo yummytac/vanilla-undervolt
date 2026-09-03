@@ -68,7 +68,7 @@ stages:
           # Enable the pre-installed package service
       #- systemctl enable intel-undervolt.service
       - systemctl enable tlp.service
-      - systemctl enable nohang-desktop.service
+      - systemctl enable nohang.service
 
   - name: set-image-name-abroot
     type: includes
