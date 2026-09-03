@@ -37,12 +37,12 @@ stages:
 #        - tlp-rdw
 #        - powertop
 #        - pipx
-    - name: example-packages
-      type: shell
-      commands:
+  - name: example-packages
+    type: shell
+    commands:
           # Tell dpkg to always keep your existing custom configuration file without asking
-         - DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" python3-pip python3-venv vim tlp tlp-rdw powertop
-         - apt-get clean
+        - DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" python3-pip python3-venv vim tlp tlp-rdw powertop
+        - apt-get clean
 
 
   - name: install-undervolt-tool
