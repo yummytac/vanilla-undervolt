@@ -46,6 +46,12 @@ stages:
       # - https://raw.githubusercontent.com/Vanilla-OS/dev-image/main/modules/05-go.yml # Sample full URL remote module
 
   # Put your custom actions above this comment
+  - name: enable-intel-undervolt
+    type: shell
+    commands:
+          # Enable the pre-installed package service
+      - systemctl enable intel-undervolt.service
+      - systemctl enable tlp.service
 
   - name: set-image-name-abroot
     type: includes
