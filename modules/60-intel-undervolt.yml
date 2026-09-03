@@ -6,6 +6,7 @@ commands:
   - git clone https://github.com/kitsunyan/intel-undervolt.git /tmp/intel-undervolt
   - cd /tmp/intel-undervolt && ./configure && make && make install
   - rm -rf /tmp/intel-undervolt
-  - printf "enable yes\n\nundervolt 0 CPU -80\nundervolt 1 GPU -60\nundervolt 2 CPU Cache -80\n" > /etc/intel-undervolt.conf
+  - printf "enable yes\n\nundervolt 0 CPU -80\nundervolt 1 GPU -60\nundervolt 2 Cache -80\n" > /etc/intel-undervolt.conf
+  - printf "[Unit]\nDescription=Intel CPU Undervolting Tool\nAfter=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target\n\n[Service]\nType=oneshot\nExecStart=/usr/local/bin/intel-undervolt apply\n\n[Install]\nWantedBy=multi-user.target\n" > /etc/systemd/system/intel-undervolt.service
   - mkdir -p /etc/systemd/system/multi-user.target.wants
-  - ln -sf /usr/local/lib/systemd/system/intel-undervolt.service /etc/systemd/system/multi-user.target.wants/intel-undervolt.service
+  - ln -sf /etc/systemd/system/intel-undervolt.service /etc/systemd/system/multi-user.target.wants/intel-undervolt.service
