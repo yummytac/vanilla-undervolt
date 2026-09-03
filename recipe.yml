@@ -30,16 +30,23 @@ stages:
     type: apt
     sources:
       - packages:
+        - python3-pip
+        - python3-venv
         - vim
 #        - pipx
 
 
+  - name: install-undervolt-tool
+        type: shell
+        commands:
+          # Install the python undervolt utility globally in the build image
+          - pip3 install --break-system-packages undervolt
 
   - name: example-modules # Sample module demonstrating importing local and remote modules
     type: includes
     includes:
       - modules/50-install-debs.yml 
-      - modules/60-intel-undervolt.yml
+      #- modules/60-intel-undervolt.yml
       - modules/70-optimize.yml
       # Sample local module present in this repository
       # - gh:vanilla-os/dev-image:main:modules/00-basics.yml # Sample GitHub remote module in the format: `gh:your-name/your-repo:branch:modules/file.yml`
@@ -52,6 +59,7 @@ stages:
           # Enable the pre-installed package service
       #- systemctl enable intel-undervolt.service
       - systemctl enable tlp.service
+      - systemctl enable undervolt.service
 
   - name: set-image-name-abroot
     type: includes
