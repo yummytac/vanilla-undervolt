@@ -1,5 +1,4 @@
 name: install-undervolt
-name: intel-undervolt
 type: shell
 commands:
   # 1. Dependencies
