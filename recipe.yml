@@ -31,13 +31,13 @@ stages:
     sources:
       - packages:
         - vim
-        - pipx
+#        - pipx
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
     commands:
-     - mkdir -p /usr/sbin /usr/lib/pipx
-     - PIPX_HOME=/usr/lib/pipx PIPX_BIN_DIR=/usr/sbin pipx install --global undervolt
+#     - mkdir -p /usr/sbin /usr/lib/pipx
+#     - PIPX_HOME=/usr/lib/pipx PIPX_BIN_DIR=/usr/sbin pipx install --global undervolt
 #     - PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/opt/bin pipx install --global undervolt
 #     - PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install --global undervolt
 #    - pip3 install --no-cache-dir --break-system-packages undervolt
@@ -45,7 +45,9 @@ stages:
   - name: example-modules # Sample module demonstrating importing local and remote modules
     type: includes
     includes:
-      - modules/50-install-debs.yml # Sample local module present in this repository
+      - modules/50-install-debs.yml 
+      - modules/60-intel-undervolt.yml
+      # Sample local module present in this repository
       # - gh:vanilla-os/dev-image:main:modules/00-basics.yml # Sample GitHub remote module in the format: `gh:your-name/your-repo:branch:modules/file.yml`
       # - https://raw.githubusercontent.com/Vanilla-OS/dev-image/main/modules/05-go.yml # Sample full URL remote module
 
