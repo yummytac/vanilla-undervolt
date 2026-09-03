@@ -37,10 +37,10 @@ stages:
 
 
   - name: install-undervolt-tool
-        type: shell
-        commands:
+    type: shell
+    commands:
           # Install the python undervolt utility globally in the build image
-          - pip3 install --break-system-packages undervolt
+        - pip3 install --break-system-packages undervolt
 
   - name: example-modules # Sample module demonstrating importing local and remote modules
     type: includes
