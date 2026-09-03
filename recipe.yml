@@ -36,8 +36,9 @@ stages:
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
     commands:
-     - mkdir -p /opt/bin
-     - PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/opt/bin pipx install --global undervolt
+     - mkdir -p /usr/sbin /usr/lib/pipx
+     - PIPX_HOME=/usr/lib/pipx PIPX_BIN_DIR=/usr/sbin pipx install --global undervolt
+#     - PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/opt/bin pipx install --global undervolt
 #     - PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install --global undervolt
 #    - pip3 install --no-cache-dir --break-system-packages undervolt
 
