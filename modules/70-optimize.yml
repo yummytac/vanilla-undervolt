@@ -1,5 +1,13 @@
 name: install-prefs
 type: shell
 commands:
-#  - apt-get install tlp tlp-rdw powertop micro fish
-   - DEBIAN_FRONTEND=noninteractive apt-get install -y tlp tlp-rdw powertop micro fish
+          # Prevent Debian packages from starting daemons inside the builder container
+          - echo '#!/bin/sh' > /usr/sbin/policy-rc.d
+          - echo 'exit 101' >> /usr/sbin/policy-rc.d
+          - chmod +x /usr/sbin/policy-rc.d
+          
+          # Proceed safely with the non-interactive installation
+          - DEBIAN_FRONTEND=noninteractive apt-get install -y tlp tlp-rdw powertop micro fish
+          
+          # Clean up the policy bypass layer after the packages finish setting up
+          - rm -f /usr/sbin/policy-rc.d
