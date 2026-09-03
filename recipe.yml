@@ -41,7 +41,7 @@ stages:
     type: shell
     commands:
           # Tell dpkg to always keep your existing custom configuration file without asking
-        - DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" python3-pip python3-venv vim tlp tlp-rdw powertop
+        - DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" python3-pip nohang python3-venv vim tlp tlp-rdw powertop
         - apt-get clean
 
 
@@ -68,7 +68,7 @@ stages:
           # Enable the pre-installed package service
       #- systemctl enable intel-undervolt.service
       - systemctl enable tlp.service
-      - systemctl enable undervolt.service
+      - systemctl enable nohang-desktop.service
 
   - name: set-image-name-abroot
     type: includes
