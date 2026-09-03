@@ -5,7 +5,7 @@ DefaultDependencies=no
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/undervolt --core -80 --gpu -60 --cache -80
+ExecStart=/usr/bin/undervolt --core -80 --gpu -60 --cache -80
 RemainAfterExit=yes
 
 [Install]
