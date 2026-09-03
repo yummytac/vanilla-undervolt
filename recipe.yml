@@ -50,7 +50,7 @@ stages:
     type: shell
     commands:
           # Enable the pre-installed package service
-      - systemctl enable intel-undervolt.service
+      #- systemctl enable intel-undervolt.service
       - systemctl enable tlp.service
 
   - name: set-image-name-abroot
