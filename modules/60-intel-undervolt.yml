@@ -1,33 +1,26 @@
 name: install-undervolt
 type: shell
 commands:
-# 1. Install build dependencies
-  - apt-get update 
-  - apt-get install -y build-essential git pkg-config
+  # 1. Install build dependencies
+  - apt-get update && apt-get install -y build-essential git pkg-config
 
   # 2. Clone repository and build
   - git clone https://github.com/kitsunyan/intel-undervolt.git /tmp/intel-undervolt
-  - cd /tmp/intel-undervolt
-  - ./configure
-  - make
-  - make install
+  - cd /tmp/intel-undervolt && ./configure && make && make install
 
   # 3. Clean up source build files
   - rm -rf /tmp/intel-undervolt
 
-  # 4. Write the undervolt configuration (-80 CPU, -60 GPU, -80 CPU Cache)
+  # 4. Write the undervolt configuration
   - |
     cat << 'EOF' > /etc/intel-undervolt.conf
     enable yes
 
-    # Undervolt settings (Index: Voltage offset in mV)
-    # 0: CPU Core (-80 mV)
-    # 1: GPU (-60 mV)
-    # 2: CPU Cache (-80 mV)
     undervolt 0 CPU -80
     undervolt 1 GPU -60
     undervolt 2 CPU Cache -80
     EOF
 
-  # 5. Enable systemd service for automatic apply on boot
-  - systemctl enable intel-undervolt.service
+  # 5. Enable the service manually via symlink (bypasses active systemd requirement)
+  - mkdir -p /etc/systemd/system/multi-user.target.wants
+  - ln -sf /usr/local/lib/systemd/system/intel-undervolt.service /etc/systemd/system/multi-user.target.wants/intel-undervolt.service
